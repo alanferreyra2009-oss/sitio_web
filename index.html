@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokepedia — Pokédex completa, wiki y herramientas Pokémon</title>
+    <meta name="description" content="Pokepedia: Pokédex nacional, base de datos de movimientos, habilidades, objetos, tipos, team builder, comparador y más. Datos de PokéAPI.">
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('pw_theme');
+                if (!t && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) t = 'dark';
+                if (t) document.documentElement.setAttribute('data-theme', t);
+            } catch (e) {}
+        })();
+    </script>
+</head>
+<body>
+
+    <!-- Barra superior -->
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a href="#/" class="brand">
+                <img src="logo.svg" alt="Pokébola — Logo de Pokepedia">
+                <span class="brand-name">Pokepedia</span>
+            </a>
+            <form id="globalSearch" class="topsearch" role="search">
+                <input type="search" id="globalSearchInput" placeholder="Buscar Pokémon, movimientos, habilidades, objetos..." autocomplete="off" aria-label="Búsqueda global">
+                <button type="submit">Buscar</button>
+                <div id="searchResults" class="search-results" role="listbox"></div>
+            </form>
+            <button id="themeToggle" class="theme-toggle" type="button" title="Cambiar tema" aria-label="Cambiar tema"></button>
+        </div>
+    </header>
+
+    <div class="layout">
+
+        <!-- Barra lateral -->
+        <aside class="sidebar" id="sidebar">
+            <nav aria-label="Navegación principal">
+                <h3>General</h3>
+                <ul>
+                    <li><a href="#/" data-nav="home">Inicio</a></li>
+                    <li><a href="#/dex" data-nav="dex">Pokédex</a></li>
+                    <li><a href="#/favorites" data-nav="favorites">Favoritos</a></li>
+                    <li><a href="#/history" data-nav="history">Vistos recientemente</a></li>
+                </ul>
+                <h3>Base de datos</h3>
+                <ul>
+                    <li><a href="#/types" data-nav="types">Tipos</a></li>
+                    <li><a href="#/types/calc" data-nav="types">Calculadora de tipos</a></li>
+                    <li><a href="#/moves" data-nav="moves">Movimientos</a></li>
+                    <li><a href="#/abilities" data-nav="abilities">Habilidades</a></li>
+                    <li><a href="#/items" data-nav="items">Objetos</a></li>
+                    <li><a href="#/berries" data-nav="berries">Bayas</a></li>
+                    <li><a href="#/regions" data-nav="regions">Regiones</a></li>
+                    <li><a href="#/legendary" data-nav="legendary">Legendarios y Míticos</a></li>
+                </ul>
+                <h3>Regiones</h3>
+                <ul id="regionList"></ul>
+                <h3>Herramientas</h3>
+                <ul>
+                    <li><a href="#/teambuilder" data-nav="teambuilder">Team Builder</a></li>
+                    <li><a href="#/compare" data-nav="compare">Comparador</a></li>
+                    <li><a href="#/rankings" data-nav="rankings">Rankings</a></li>
+                    <li><a href="#/random" data-nav="random">Generador aleatorio</a></li>
+                    <li><a href="#/damage" data-nav="damage">Calculadora de daño</a></li>
+                </ul>
+                <h3>Ayuda</h3>
+                <ul>
+                    <li><a href="#/ayuda" data-nav="ayuda">Centro de ayuda</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                Pokepedia © 2026 · Datos: PokéAPI (CC BY 4.0)<br>Fan page no oficial
+            </div>
+        </aside>
+
+        <!-- Contenido principal -->
+        <main class="content">
+            <div id="view" aria-live="polite"></div>
+            <footer class="footer">
+                <p>
+                    Pokepedia no está afiliada a Nintendo, Game Freak o The Pokémon Company.
+                    Todos los nombres y datos pertenecen a sus respectivos dueños. Datos: PokéAPI (CC BY 4.0).
+                    Los favoritos, el historial y los equipos se guardan localmente en tu navegador.
+                </p>
+            </footer>
+        </main>
+    </div>
+
+    <button id="backToTop" class="back-to-top" type="button" aria-label="Volver arriba" title="Volver arriba">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 6l6 6h-4v6h-4v-6H6z" fill="currentColor"/></svg>
+    </button>
+
+    <script src="js/core.js"></script>
+    <script src="js/store.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/views-main.js"></script>
+    <script src="js/views-db.js"></script>
+    <script src="js/views-tools.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
